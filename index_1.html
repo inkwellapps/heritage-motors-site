@@ -1,0 +1,236 @@
+<title>Heritage Motors</title>
+<style>
+:root{
+  --bg:#f3f5f4;
+  --surface:#ffffff;
+  --surface-2:#e8ece9;
+  --text:#132320;
+  --text-dim:#57625d;
+  --border:#d8ddd8;
+  --primary:#0f3d3a;
+  --primary-ink:#ffffff;
+  --accent:#e8632c;
+  --accent-ink:#ffffff;
+  --ok-bg:#e3f3e6; --ok-text:#1e7a34;
+  --sold-bg:#f1e2e2; --sold-text:#9c2f2f;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1412;
+    --surface:#182420;
+    --surface-2:#1f2d28;
+    --text:#eef3f0;
+    --text-dim:#a4b0ab;
+    --border:#2b3a34;
+    --primary:#164d47;
+    --primary-ink:#eafff9;
+    --accent:#ff7a3d;
+    --accent-ink:#211000;
+    --ok-bg:#173323; --ok-text:#7fe19b;
+    --sold-bg:#3a2222; --sold-text:#ff9b9b;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1412; --surface:#182420; --surface-2:#1f2d28; --text:#eef3f0; --text-dim:#a4b0ab;
+  --border:#2b3a34; --primary:#164d47; --primary-ink:#eafff9; --accent:#ff7a3d; --accent-ink:#211000;
+  --ok-bg:#173323; --ok-text:#7fe19b; --sold-bg:#3a2222; --sold-text:#ff9b9b;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Inter",system-ui,sans-serif;padding-block:0 48px;}
+h1,h2,h3{font-family:"Manrope",sans-serif;text-wrap:balance;margin:0;}
+.topbar{
+  background:var(--primary);color:var(--primary-ink);
+  padding:18px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:5;
+}
+.topbar a{color:var(--primary-ink);text-decoration:none;}
+.brand{font-family:"Manrope",sans-serif;font-weight:800;font-size:19px;letter-spacing:.01em;}
+.callrow{display:flex;gap:8px;}
+.pill{
+  font-size:13px;font-weight:700;padding:8px 12px;border-radius:999px;text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+}
+.pill.call{background:rgba(255,255,255,.16);color:var(--primary-ink);}
+.pill.text{background:var(--accent);color:var(--accent-ink);}
+.wrap{max-width:920px;margin:0 auto;padding:24px 16px;}
+
+/* Index grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:18px;}
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  text-decoration:none;color:var(--text);display:flex;flex-direction:column;
+}
+.thumb{
+  aspect-ratio:4/3;background:linear-gradient(135deg,var(--surface-2),var(--border));
+  display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:13px;
+}
+.card .info{padding:14px;display:flex;flex-direction:column;gap:4px;flex:1;}
+.card .name{font-weight:700;font-size:15px;}
+.card .price{font-family:"Manrope",sans-serif;font-weight:800;color:var(--primary);font-size:17px;font-variant-numeric:tabular-nums;}
+:root[data-theme="dark"] .card .price, @media (prefers-color-scheme:dark){.card .price{color:#7fe1c9;}}
+.badge{align-self:flex-start;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;}
+.badge.ok{background:var(--ok-bg);color:var(--ok-text);}
+.badge.sold{background:var(--sold-bg);color:var(--sold-text);}
+.empty{color:var(--text-dim);font-size:14px;margin-top:24px;}
+
+/* Single car */
+.carhead{margin-top:8px;}
+.carphoto{
+  aspect-ratio:16/10;border-radius:18px;background:linear-gradient(135deg,var(--surface-2),var(--border));
+  display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:14px;margin-bottom:16px;
+  max-width:100%;
+}
+.carphoto img{width:100%;height:100%;object-fit:cover;border-radius:18px;}
+.cartitle{font-size:26px;font-weight:800;}
+.carprice{font-family:"Manrope",sans-serif;font-weight:800;font-size:30px;color:var(--primary);margin:6px 0 4px;font-variant-numeric:tabular-nums;}
+:root[data-theme="dark"] .carprice{color:#7fe1c9;}
+.carmeta{color:var(--text-dim);font-size:14px;margin-bottom:18px;}
+.video{
+  aspect-ratio:9/16;max-width:320px;border-radius:16px;background:var(--surface-2);
+  display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:14px;
+  border:1px solid var(--border);margin-bottom:20px;padding:16px;text-align:center;
+}
+.video iframe{width:100%;height:100%;border:0;border-radius:16px;}
+.ctarow{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
+.btn{
+  flex:1;min-width:160px;text-align:center;padding:14px 16px;border-radius:12px;font-weight:700;
+  text-decoration:none;font-size:15px;
+}
+.btn.primary{background:var(--accent);color:var(--accent-ink);}
+.btn.secondary{background:var(--surface);border:1px solid var(--border);color:var(--text);}
+.backlink{display:inline-block;margin-top:4px;font-size:13px;color:var(--text-dim);text-decoration:none;}
+
+/* Admin */
+.adminnote{background:var(--surface-2);border-radius:12px;padding:14px 16px;font-size:13.5px;color:var(--text-dim);margin-bottom:20px;}
+.qrgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+.qrcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;text-align:center;}
+.qrcard .qrbox{display:flex;justify-content:center;margin-bottom:10px;}
+.qrcard .stock{font-weight:700;font-size:14px;margin-bottom:2px;}
+.qrcard .url{font-size:11px;color:var(--text-dim);word-break:break-all;}
+@media print{
+  .topbar,.adminnote{display:none;}
+  .qrgrid{grid-template-columns:repeat(3,1fr);}
+}
+footer{text-align:center;color:var(--text-dim);font-size:12px;margin-top:36px;}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<div class="topbar">
+  <div class="brand">Heritage Motors</div>
+  <div class="callrow">
+    <a class="pill call" href="tel:+17708918658">&#128222; Call</a>
+    <a class="pill text" href="sms:+17708918658">&#128172; Text</a>
+  </div>
+</div>
+<div class="wrap" id="app"></div>
+<footer>Heritage Motors &middot; Atlanta area &middot; (770) 891-8658</footer>
+
+<script>
+try{
+// ---- Inventory data. Edit this object to add, update, or remove cars. ----
+// status: "available" or "sold". video and photo can be left as null until you have them.
+var CARS = {
+  "SAMPLE-101": {
+    year: 2018, make: "Honda", model: "Accord", price: 14995, miles: 71000,
+    location: "Cascade Rd lot", status: "available",
+    photo: "https://commons.wikimedia.org/wiki/Special:FilePath/2018_Honda_Accord_Touring_2.0t.jpg", // stock placeholder, swap for a real photo of this car
+    video: null // paste a YouTube or TikTok embed URL here later, e.g. "https://www.youtube.com/embed/XXXXXXXX"
+  },
+  "SAMPLE-102": {
+    year: 2016, make: "Ford", model: "Explorer", price: 11995, miles: 98000,
+    location: "Cleveland Ave lot", status: "sold",
+    photo: "https://commons.wikimedia.org/wiki/Special:FilePath/2016_Ford_Explorer.jpg", // stock placeholder, swap for a real photo of this car
+    video: null
+  }
+};
+// ---------------------------------------------------------------------------
+
+function money(n){ return "$" + Number(n).toLocaleString("en-US"); }
+function carUrl(stock){
+  var base = location.origin + location.pathname;
+  return base + "?car=" + encodeURIComponent(stock);
+}
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+function renderIndex(root){
+  var stocks = Object.keys(CARS);
+  var html = '<h1>Current inventory</h1><p style="color:var(--text-dim);margin-top:6px;">Tap a car to see the walkaround, the price, and a fast way to reach Ashley.</p>';
+  if(stocks.length === 0){
+    html += '<p class="empty">Nothing listed right now, check back soon.</p>';
+  } else {
+    html += '<div class="grid">';
+    stocks.forEach(function(stock){
+      var c = CARS[stock];
+      var badge = c.status === "sold" ? '<span class="badge sold">Sold</span>' : '<span class="badge ok">Available</span>';
+      html += '<a class="card" href="?car=' + encodeURIComponent(stock) + '">' +
+        '<div class="thumb">' + (c.photo ? '<img src="'+esc(c.photo)+'" style="width:100%;height:100%;object-fit:cover;">' : 'Photo coming soon') + '</div>' +
+        '<div class="info">' + badge +
+        '<div class="name">' + c.year + ' ' + esc(c.make) + ' ' + esc(c.model) + '</div>' +
+        '<div class="price">' + money(c.price) + '</div></div></a>';
+    });
+    html += '</div>';
+  }
+  root.innerHTML = html;
+}
+
+function renderCar(root, stock){
+  var c = CARS[stock];
+  if(!c){
+    root.innerHTML = '<h1>Car not found</h1><p style="color:var(--text-dim);">That listing may have sold or moved. <a href="?">See everything available</a>.</p>';
+    return;
+  }
+  var title = c.year + ' ' + esc(c.make) + ' ' + esc(c.model);
+  var soldTag = c.status === "sold" ? '<span class="badge sold" style="margin-bottom:10px;display:inline-block;">Sold</span><br>' : '';
+  var photo = c.photo
+    ? '<div class="carphoto"><img src="'+esc(c.photo)+'"></div>'
+    : '<div class="carphoto">Photo coming soon</div>';
+  var video = c.video
+    ? '<div class="video"><iframe src="'+esc(c.video)+'" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>'
+    : '<div class="video">Walkaround video coming soon, ask about this one by text</div>';
+  var msg = encodeURIComponent("Hi, I found the " + title + " (stock " + stock + ") on the Heritage Motors page, is it still available?");
+  root.innerHTML =
+    '<a class="backlink" href="?">&larr; All inventory</a>' +
+    '<div class="carhead">' + photo +
+    soldTag +
+    '<div class="cartitle">' + title + '</div>' +
+    '<div class="carprice">' + money(c.price) + '</div>' +
+    '<div class="carmeta">' + Number(c.miles).toLocaleString("en-US") + ' miles &middot; ' + esc(c.location) + ' &middot; stock ' + esc(stock) + '</div>' +
+    video +
+    '<div class="ctarow">' +
+      '<a class="btn primary" href="sms:+17708918658?body=' + msg + '">Text Ashley about this one</a>' +
+      '<a class="btn secondary" href="tel:+17708918658">Call instead</a>' +
+    '</div></div>';
+}
+
+function renderAdmin(root){
+  var stocks = Object.keys(CARS);
+  var html = '<h1>QR codes, Martin only</h1>' +
+    '<div class="adminnote">Screenshot or print each code below and put it on that car\'s window cling. Scanning it opens that car\'s page straight to the text button. Add a new car by editing the CARS object at the top of this page\'s code, then republish.</div>' +
+    '<div class="qrgrid">';
+  stocks.forEach(function(stock){
+    html += '<div class="qrcard"><div class="stock">' + esc(stock) + '</div>' +
+      '<div class="qrbox" id="qr-' + esc(stock) + '"></div>' +
+      '<div class="url">' + esc(carUrl(stock)) + '</div></div>';
+  });
+  html += '</div>';
+  root.innerHTML = html;
+  stocks.forEach(function(stock){
+    try{
+      new QRCode(document.getElementById('qr-' + stock), { text: carUrl(stock), width: 128, height: 128 });
+    }catch(e){}
+  });
+}
+
+function route(){
+  var root = document.getElementById('app');
+  var params = new URLSearchParams(location.search);
+  if(params.get('admin') === '1'){ renderAdmin(root); }
+  else if(params.has('car')){ renderCar(root, params.get('car')); }
+  else { renderIndex(root); }
+}
+route();
+}catch(e){
+  document.getElementById('app').innerHTML = '<p>Something did not load right, refresh the page.</p>';
+}
+</script>
